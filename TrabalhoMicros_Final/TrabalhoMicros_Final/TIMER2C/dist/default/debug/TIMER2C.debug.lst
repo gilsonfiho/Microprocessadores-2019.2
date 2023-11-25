@@ -1,0 +1,611 @@
+
+
+Microchip MPLAB XC8 Assembler V2.10 build 88905656 
+                                                                                               Wed Nov 20 21:47:08 2019
+
+Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1 
+     1                           	processor	18F4550
+     2                           	fnconf	rparam,??,?,0
+     3                           	opt	pw 120
+     4                           	opt	flic
+     5                           	psect	nvCOMRAM,global,class=COMRAM,space=1,delta=1,noexec
+     6                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     7                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1,noexec
+     8                           	psect	text0,global,reloc=2,class=CODE,delta=1
+     9                           	psect	text1,global,reloc=2,class=CODE,delta=1
+    10                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    11                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    12                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    13  0000                     
+    14                           ; Version 2.10
+    15                           ; Generated 31/07/2019 GMT
+    16                           ; 
+    17                           ; Copyright © 2019, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    18                           ; All rights reserved.
+    19                           ; 
+    20                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    21                           ; 
+    22                           ; Redistribution and use in source and binary forms, with or without modification, are
+    23                           ; permitted provided that the following conditions are met:
+    24                           ; 
+    25                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    26                           ;        conditions and the following disclaimer.
+    27                           ; 
+    28                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    29                           ;        of conditions and the following disclaimer in the documentation and/or other
+    30                           ;        materials provided with the distribution.
+    31                           ; 
+    32                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    33                           ;        software without specific prior written permission.
+    34                           ; 
+    35                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    36                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    37                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    38                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    39                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    40                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    41                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    42                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    43                           ; 
+    44                           ; 
+    45                           ; Code-generator required, PIC18F4550 Definitions
+    46                           ; 
+    47                           ; SFR Addresses
+    48  0000                     
+    49                           	psect	nvCOMRAM
+    50  000006                     __pnvCOMRAM:
+    51                           	opt callstack 0
+    52  000006                     _valor:
+    53                           	opt callstack 0
+    54  000006                     	ds	2
+    55  0000                     _ADRESL	set	4035
+    56  0000                     _ADRESH	set	4036
+    57  0000                     _ADCON0bits	set	4034
+    58  0000                     _ADCON2	set	4032
+    59  0000                     _ADCON1	set	4033
+    60  0000                     _ADCON0	set	4034
+    61  0000                     _PORTD	set	3971
+    62  0000                     _TRISDbits	set	3989
+    63  0000                     _TRISAbits	set	3986
+    64                           
+    65                           ; #config settings
+    66                           
+    67                           	psect	cinit
+    68  007EB8                     __pcinit:
+    69                           	opt callstack 0
+    70  007EB8                     start_initialization:
+    71                           	opt callstack 0
+    72  007EB8                     __initialization:
+    73                           	opt callstack 0
+    74  007EB8                     end_of_initialization:
+    75                           	opt callstack 0
+    76  007EB8                     __end_of__initialization:
+    77                           	opt callstack 0
+    78  007EB8  0100               	movlb	0
+    79  007EBA  EF77  F03F         	goto	_main	;jump to C main() function
+    80                           
+    81                           	psect	cstackCOMRAM
+    82  000001                     __pcstackCOMRAM:
+    83                           	opt callstack 0
+    84  000001                     ?_ADC_Read:
+    85                           	opt callstack 0
+    86  000001                     atuliza_leds@valor:
+    87                           	opt callstack 0
+    88                           
+    89                           ; 2 bytes @ 0x0
+    90  000001                     	ds	2
+    91  000003                     ??_ADC_Read:
+    92  000003                     
+    93                           ; 1 bytes @ 0x2
+    94  000003                     	ds	2
+    95  000005                     ??_main:
+    96                           
+    97                           ; 1 bytes @ 0x4
+    98  000005                     	ds	1
+    99                           
+   100 ;;
+   101 ;;Main: autosize = 0, tempsize = 1, incstack = 0, save=0
+   102 ;;
+   103 ;; *************** function _main *****************
+   104 ;; Defined at:
+   105 ;;		line 79 in file "main.c"
+   106 ;; Parameters:    Size  Location     Type
+   107 ;;		None
+   108 ;; Auto vars:     Size  Location     Type
+   109 ;;		None
+   110 ;; Return value:  Size  Location     Type
+   111 ;;                  1    wreg      void 
+   112 ;; Registers used:
+   113 ;;		wreg, status,2, status,0, cstack
+   114 ;; Tracked objects:
+   115 ;;		On entry : 0/0
+   116 ;;		On exit  : 0/0
+   117 ;;		Unchanged: 0/0
+   118 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   119 ;;      Params:         0       0       0       0       0       0       0       0       0
+   120 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   121 ;;      Temps:          1       0       0       0       0       0       0       0       0
+   122 ;;      Totals:         1       0       0       0       0       0       0       0       0
+   123 ;;Total ram usage:        1 bytes
+   124 ;; Hardware stack levels required when called:    1
+   125 ;; This function calls:
+   126 ;;		_ADC_Read
+   127 ;;		_atuliza_leds
+   128 ;; This function is called by:
+   129 ;;		Startup code after reset
+   130 ;; This function uses a non-reentrant model
+   131 ;;
+   132                           
+   133                           	psect	text0
+   134  007EEE                     __ptext0:
+   135                           	opt callstack 0
+   136  007EEE                     _main:
+   137                           	opt callstack 30
+   138  007EEE                     
+   139                           ;main.c: 81:     TRISAbits.TRISA0 = 1;
+   140  007EEE  8092               	bsf	146,0,c	;volatile
+   141                           
+   142                           ;main.c: 82:     TRISDbits.TRISD0 = 0;
+   143  007EF0  9095               	bcf	149,0,c	;volatile
+   144                           
+   145                           ;main.c: 83:     TRISDbits.TRISD1 = 0;
+   146  007EF2  9295               	bcf	149,1,c	;volatile
+   147                           
+   148                           ;main.c: 84:     TRISDbits.TRISD2 = 0;
+   149  007EF4  9495               	bcf	149,2,c	;volatile
+   150                           
+   151                           ;main.c: 85:     TRISDbits.TRISD3 = 0;
+   152  007EF6  9695               	bcf	149,3,c	;volatile
+   153  007EF8                     l808:
+   154                           
+   155                           ;main.c: 91:         valor = (ADC_Read());
+   156  007EF8  EC5F  F03F         	call	_ADC_Read	;wreg free
+   157  007EFC  C001  F006         	movff	?_ADC_Read,_valor
+   158  007F00  C002  F007         	movff	?_ADC_Read+1,_valor+1
+   159                           
+   160                           ;main.c: 92:         atuliza_leds(valor);
+   161  007F04  C006  F001         	movff	_valor,atuliza_leds@valor
+   162  007F08  C007  F002         	movff	_valor+1,atuliza_leds@valor+1
+   163  007F0C  EC94  F03F         	call	_atuliza_leds	;wreg free
+   164  007F10                     
+   165                           ;main.c: 93:         _delay((unsigned long)((50)*(4000000/4000.0)));
+   166  007F10  0E41               	movlw	65
+   167  007F12  6E05               	movwf	??_main^0,c
+   168  007F14  0EEE               	movlw	238
+   169  007F16                     u217:
+   170  007F16  2EE8               	decfsz	wreg,f,c
+   171  007F18  D7FE               	bra	u217
+   172  007F1A  2E05               	decfsz	??_main^0,f,c
+   173  007F1C  D7FC               	bra	u217
+   174  007F1E  D000               	nop2	
+   175  007F20  EF7C  F03F         	goto	l808
+   176  007F24  EF00  F000         	goto	start
+   177  007F28                     __end_of_main:
+   178                           	opt callstack 0
+   179                           
+   180 ;; *************** function _atuliza_leds *****************
+   181 ;; Defined at:
+   182 ;;		line 97 in file "main.c"
+   183 ;; Parameters:    Size  Location     Type
+   184 ;;  valor           2    0[COMRAM] unsigned int 
+   185 ;; Auto vars:     Size  Location     Type
+   186 ;;		None
+   187 ;; Return value:  Size  Location     Type
+   188 ;;                  1    wreg      void 
+   189 ;; Registers used:
+   190 ;;		wreg, status,2, status,0
+   191 ;; Tracked objects:
+   192 ;;		On entry : 0/0
+   193 ;;		On exit  : 0/0
+   194 ;;		Unchanged: 0/0
+   195 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   196 ;;      Params:         2       0       0       0       0       0       0       0       0
+   197 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   198 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   199 ;;      Totals:         2       0       0       0       0       0       0       0       0
+   200 ;;Total ram usage:        2 bytes
+   201 ;; Hardware stack levels used:    1
+   202 ;; This function calls:
+   203 ;;		Nothing
+   204 ;; This function is called by:
+   205 ;;		_main
+   206 ;; This function uses a non-reentrant model
+   207 ;;
+   208                           
+   209                           	psect	text1
+   210  007F28                     __ptext1:
+   211                           	opt callstack 0
+   212  007F28                     _atuliza_leds:
+   213                           	opt callstack 30
+   214  007F28                     
+   215                           ;main.c: 98:     if(valor > 0 && valor < 25){
+   216  007F28  5001               	movf	atuliza_leds@valor^0,w,c
+   217  007F2A  1002               	iorwf	(atuliza_leds@valor+1)^0,w,c
+   218  007F2C  B4D8               	btfsc	status,2,c
+   219  007F2E  EF9B  F03F         	goto	u121
+   220  007F32  EF9D  F03F         	goto	u120
+   221  007F36                     u121:
+   222  007F36  EFAC  F03F         	goto	l784
+   223  007F3A                     u120:
+   224  007F3A  5002               	movf	(atuliza_leds@valor+1)^0,w,c
+   225  007F3C  E107               	bnz	u131
+   226  007F3E  0E19               	movlw	25
+   227  007F40  5C01               	subwf	atuliza_leds@valor^0,w,c
+   228  007F42  B0D8               	btfsc	status,0,c
+   229  007F44  EFA6  F03F         	goto	u131
+   230  007F48  EFA8  F03F         	goto	u130
+   231  007F4C                     u131:
+   232  007F4C  EFAC  F03F         	goto	l784
+   233  007F50                     u130:
+   234  007F50                     
+   235                           ;main.c: 99:         PORTD=0x00;
+   236  007F50  0E00               	movlw	0
+   237  007F52  6E83               	movwf	131,c	;volatile
+   238                           
+   239                           ;main.c: 100:     }
+   240  007F54  EFFF  F03F         	goto	l46
+   241  007F58                     l784:
+   242  007F58  5002               	movf	(atuliza_leds@valor+1)^0,w,c
+   243  007F5A  E109               	bnz	u140
+   244  007F5C  0E1A               	movlw	26
+   245  007F5E  5C01               	subwf	atuliza_leds@valor^0,w,c
+   246  007F60  A0D8               	btfss	status,0,c
+   247  007F62  EFB5  F03F         	goto	u141
+   248  007F66  EFB7  F03F         	goto	u140
+   249  007F6A                     u141:
+   250  007F6A  EFC3  F03F         	goto	l790
+   251  007F6E                     u140:
+   252  007F6E  0402               	decf	(atuliza_leds@valor+1)^0,w,c
+   253  007F70  B0D8               	btfsc	status,0,c
+   254  007F72  EFBD  F03F         	goto	u151
+   255  007F76  EFBF  F03F         	goto	u150
+   256  007F7A                     u151:
+   257  007F7A  EFC3  F03F         	goto	l790
+   258  007F7E                     u150:
+   259  007F7E                     
+   260                           ;main.c: 102:         PORTD=0x01;
+   261  007F7E  0E01               	movlw	1
+   262  007F80  6E83               	movwf	131,c	;volatile
+   263                           
+   264                           ;main.c: 103:     }
+   265  007F82  EFFF  F03F         	goto	l46
+   266  007F86                     l790:
+   267  007F86  0E02               	movlw	2
+   268  007F88  5C02               	subwf	(atuliza_leds@valor+1)^0,w,c
+   269  007F8A  B0D8               	btfsc	status,0,c
+   270  007F8C  EFCA  F03F         	goto	u161
+   271  007F90  EFCC  F03F         	goto	u160
+   272  007F94                     u161:
+   273  007F94  EFDA  F03F         	goto	l796
+   274  007F98                     u160:
+   275  007F98  0401               	decf	atuliza_leds@valor^0,w,c
+   276  007F9A  0E01               	movlw	1
+   277  007F9C  5802               	subwfb	(atuliza_leds@valor+1)^0,w,c
+   278  007F9E  A0D8               	btfss	status,0,c
+   279  007FA0  EFD4  F03F         	goto	u171
+   280  007FA4  EFD6  F03F         	goto	u170
+   281  007FA8                     u171:
+   282  007FA8  EFDA  F03F         	goto	l796
+   283  007FAC                     u170:
+   284  007FAC                     
+   285                           ;main.c: 105:         PORTD=0x03;
+   286  007FAC  0E03               	movlw	3
+   287  007FAE  6E83               	movwf	131,c	;volatile
+   288                           
+   289                           ;main.c: 106:     }
+   290  007FB0  EFFF  F03F         	goto	l46
+   291  007FB4                     l796:
+   292  007FB4  0401               	decf	atuliza_leds@valor^0,w,c
+   293  007FB6  0E02               	movlw	2
+   294  007FB8  5802               	subwfb	(atuliza_leds@valor+1)^0,w,c
+   295  007FBA  A0D8               	btfss	status,0,c
+   296  007FBC  EFE2  F03F         	goto	u181
+   297  007FC0  EFE4  F03F         	goto	u180
+   298  007FC4                     u181:
+   299  007FC4  EFF1  F03F         	goto	l802
+   300  007FC8                     u180:
+   301  007FC8  0E03               	movlw	3
+   302  007FCA  5C02               	subwf	(atuliza_leds@valor+1)^0,w,c
+   303  007FCC  B0D8               	btfsc	status,0,c
+   304  007FCE  EFEB  F03F         	goto	u191
+   305  007FD2  EFED  F03F         	goto	u190
+   306  007FD6                     u191:
+   307  007FD6  EFF1  F03F         	goto	l802
+   308  007FDA                     u190:
+   309  007FDA                     
+   310                           ;main.c: 108:         PORTD=0x07;
+   311  007FDA  0E07               	movlw	7
+   312  007FDC  6E83               	movwf	131,c	;volatile
+   313                           
+   314                           ;main.c: 109:     }
+   315  007FDE  EFFF  F03F         	goto	l46
+   316  007FE2                     l802:
+   317  007FE2  0401               	decf	atuliza_leds@valor^0,w,c
+   318  007FE4  0E03               	movlw	3
+   319  007FE6  5802               	subwfb	(atuliza_leds@valor+1)^0,w,c
+   320  007FE8  A0D8               	btfss	status,0,c
+   321  007FEA  EFF9  F03F         	goto	u201
+   322  007FEE  EFFB  F03F         	goto	u200
+   323  007FF2                     u201:
+   324  007FF2  EFFF  F03F         	goto	l40
+   325  007FF6                     u200:
+   326  007FF6                     
+   327                           ;main.c: 111:         PORTD=0x0F;
+   328  007FF6  0E0F               	movlw	15
+   329  007FF8  6E83               	movwf	131,c	;volatile
+   330  007FFA  EFFF  F03F         	goto	l46
+   331  007FFE                     l40:
+   332  007FFE                     l46:
+   333  007FFE  0012               	return		;funcret
+   334  008000                     __end_of_atuliza_leds:
+   335                           	opt callstack 0
+   336                           
+   337 ;; *************** function _ADC_Read *****************
+   338 ;; Defined at:
+   339 ;;		line 115 in file "main.c"
+   340 ;; Parameters:    Size  Location     Type
+   341 ;;		None
+   342 ;; Auto vars:     Size  Location     Type
+   343 ;;		None
+   344 ;; Return value:  Size  Location     Type
+   345 ;;                  2    0[COMRAM] unsigned int 
+   346 ;; Registers used:
+   347 ;;		wreg, status,2, status,0
+   348 ;; Tracked objects:
+   349 ;;		On entry : 0/0
+   350 ;;		On exit  : 0/0
+   351 ;;		Unchanged: 0/0
+   352 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   353 ;;      Params:         2       0       0       0       0       0       0       0       0
+   354 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   355 ;;      Temps:          2       0       0       0       0       0       0       0       0
+   356 ;;      Totals:         4       0       0       0       0       0       0       0       0
+   357 ;;Total ram usage:        4 bytes
+   358 ;; Hardware stack levels used:    1
+   359 ;; This function calls:
+   360 ;;		Nothing
+   361 ;; This function is called by:
+   362 ;;		_main
+   363 ;; This function uses a non-reentrant model
+   364 ;;
+   365                           
+   366                           	psect	text2
+   367  007EBE                     __ptext2:
+   368                           	opt callstack 0
+   369  007EBE                     _ADC_Read:
+   370                           	opt callstack 30
+   371  007EBE                     
+   372                           ;main.c: 117:     ADCON0 = 0b01000001;
+   373  007EBE  0E41               	movlw	65
+   374  007EC0  6EC2               	movwf	194,c	;volatile
+   375                           
+   376                           ;main.c: 118:     ADCON1 = 0b11000000;
+   377  007EC2  0EC0               	movlw	192
+   378  007EC4  6EC1               	movwf	193,c	;volatile
+   379                           
+   380                           ;main.c: 119:     ADCON2 = 0b10011101;
+   381  007EC6  0E9D               	movlw	157
+   382  007EC8  6EC0               	movwf	192,c	;volatile
+   383  007ECA                     
+   384                           ;main.c: 120:     ADCON0bits.GO_DONE =1;
+   385  007ECA  82C2               	bsf	194,1,c	;volatile
+   386  007ECC                     l49:
+   387  007ECC  B2C2               	btfsc	194,1,c	;volatile
+   388  007ECE  EF6B  F03F         	goto	u111
+   389  007ED2  EF6D  F03F         	goto	u110
+   390  007ED6                     u111:
+   391  007ED6  EF66  F03F         	goto	l49
+   392  007EDA                     u110:
+   393  007EDA                     
+   394                           ;main.c: 124:     return ((ADRESH<<8)+ADRESL);
+   395  007EDA  50C4               	movf	196,w,c	;volatile
+   396  007EDC  6E04               	movwf	(??_ADC_Read+1)^0,c
+   397  007EDE  6A03               	clrf	??_ADC_Read^0,c
+   398  007EE0  50C3               	movf	195,w,c	;volatile
+   399  007EE2  2403               	addwf	??_ADC_Read^0,w,c
+   400  007EE4  6E01               	movwf	?_ADC_Read^0,c
+   401  007EE6  0E00               	movlw	0
+   402  007EE8  2004               	addwfc	(??_ADC_Read+1)^0,w,c
+   403  007EEA  6E02               	movwf	(?_ADC_Read+1)^0,c
+   404  007EEC  0012               	return		;funcret
+   405  007EEE                     __end_of_ADC_Read:
+   406                           	opt callstack 0
+   407  0000                     
+   408                           	psect	rparam
+   409  0000                     tosu	equ	0xFFF
+   410                           tosh	equ	0xFFE
+   411                           tosl	equ	0xFFD
+   412                           stkptr	equ	0xFFC
+   413                           pclatu	equ	0xFFB
+   414                           pclath	equ	0xFFA
+   415                           pcl	equ	0xFF9
+   416                           tblptru	equ	0xFF8
+   417                           tblptrh	equ	0xFF7
+   418                           tblptrl	equ	0xFF6
+   419                           tablat	equ	0xFF5
+   420                           prodh	equ	0xFF4
+   421                           prodl	equ	0xFF3
+   422                           indf0	equ	0xFEF
+   423                           postinc0	equ	0xFEE
+   424                           postdec0	equ	0xFED
+   425                           preinc0	equ	0xFEC
+   426                           plusw0	equ	0xFEB
+   427                           fsr0h	equ	0xFEA
+   428                           fsr0l	equ	0xFE9
+   429                           wreg	equ	0xFE8
+   430                           indf1	equ	0xFE7
+   431                           postinc1	equ	0xFE6
+   432                           postdec1	equ	0xFE5
+   433                           preinc1	equ	0xFE4
+   434                           plusw1	equ	0xFE3
+   435                           fsr1h	equ	0xFE2
+   436                           fsr1l	equ	0xFE1
+   437                           bsr	equ	0xFE0
+   438                           indf2	equ	0xFDF
+   439                           postinc2	equ	0xFDE
+   440                           postdec2	equ	0xFDD
+   441                           preinc2	equ	0xFDC
+   442                           plusw2	equ	0xFDB
+   443                           fsr2h	equ	0xFDA
+   444                           fsr2l	equ	0xFD9
+   445                           status	equ	0xFD8
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  2
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           95      5       7
+    BANK0           160      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMRAM
+
+    _main->_ADC_Read
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 1     1      0     274
+                                              4 COMRAM     1     1      0
+                           _ADC_Read
+                       _atuliza_leds
+ ---------------------------------------------------------------------------------
+ (1) _atuliza_leds                                         2     0      2     274
+                                              0 COMRAM     2     0      2
+ ---------------------------------------------------------------------------------
+ (1) _ADC_Read                                             4     2      2       0
+                                              0 COMRAM     4     2      2
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 1
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _ADC_Read
+   _atuliza_leds
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMRAM           5F      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMRAM              5F      5       7       1        7.4%
+STACK                0      0       0       2        0.0%
+DATA                 0      0       7       3        0.0%
+BITBANK0            A0      0       0       4        0.0%
+BANK0               A0      0       0       5        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK5           100      0       0      14        0.0%
+BANK5              100      0       0      15        0.0%
+BITBANK6           100      0       0      16        0.0%
+BANK6              100      0       0      17        0.0%
+BITBANK7           100      0       0      18        0.0%
+BANK7              100      0       0      19        0.0%
+ABS                  0      0       7      20        0.0%
+BIGRAM             7FF      0       0      21        0.0%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V2.10 build 88905656 
+Symbol Table                                                                                   Wed Nov 20 21:47:08 2019
+
+                     l40 7FFE                       l52 7EEC                       l46 7FFE  
+                     l49 7ECC                      l800 7FDA                      l802 7FE2  
+                    l810 7F10                      l804 7FF6                      l806 7EEE  
+                    l808 7EF8                      l770 7EBE                      l772 7ECA  
+                    l780 7F3A                      l774 7EDA                      l790 7F86  
+                    l782 7F50                      l792 7F98                      l784 7F58  
+                    l794 7FAC                      l786 7F6E                      l778 7F28  
+                    l796 7FB4                      l788 7F7E                      l798 7FC8  
+                    u110 7EDA                      u111 7ED6                      u200 7FF6  
+                    u120 7F3A                      u201 7FF2                      u121 7F36  
+                    u130 7F50                      u131 7F4C                      u140 7F6E  
+                    u141 7F6A                      u150 7F7E                      u151 7F7A  
+                    u160 7F98                      u161 7F94                      u217 7F16  
+                    u170 7FAC                      u171 7FA8                      u180 7FC8  
+                    u181 7FC4                      u190 7FDA                      u191 7FD6  
+                    wreg 000FE8                     _main 7EEE         __end_of_ADC_Read 7EEE  
+                   start 0000             ___param_bank 000000                    ?_main 0001  
+                  _PORTD 000F83                    _valor 0006            ?_atuliza_leds 0001  
+                  status 000FD8          __initialization 7EB8             __end_of_main 7F28  
+                 ??_main 0005            __activetblptr 000000                   _ADCON0 000FC2  
+                 _ADCON1 000FC1                   _ADCON2 000FC0                   _ADRESH 000FC4  
+                 _ADRESL 000FC3           ??_atuliza_leds 0003                ?_ADC_Read 0001  
+             __accesstop 0060  __end_of__initialization 7EB8            ___rparam_used 000001  
+         __pcstackCOMRAM 0001               ??_ADC_Read 0003               __pnvCOMRAM 0006  
+   __end_of_atuliza_leds 8000                  __Hparam 0000                  __Lparam 0000  
+                __pcinit 7EB8                  __ramtop 0800                  __ptext0 7EEE  
+                __ptext1 7F28                  __ptext2 7EBE     end_of_initialization 7EB8  
+              _TRISAbits 000F92                _TRISDbits 000F95        __size_of_ADC_Read 0030  
+  __size_of_atuliza_leds 00D8      start_initialization 7EB8             _atuliza_leds 7F28  
+      atuliza_leds@valor 0001                 _ADC_Read 7EBE               _ADCON0bits 000FC2  
+               __Hrparam 0000                 __Lrparam 0000            __size_of_main 003A  
